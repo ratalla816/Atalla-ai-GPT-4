@@ -2,10 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+**First**, 
+<br>
+cd atalla-ai-gpt-4
 
-```bash
+**Next**, 
+<br>
+run the development server:
+<br>
 npm run dev
+
+
 # or
 yarn dev
 # or
