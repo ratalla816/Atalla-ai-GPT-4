@@ -1,6 +1,6 @@
 
 "use client"
-import { useChat }from "ai/react"
+import { useChat, Message } from "ai/react"
 
 export default function ChatComponent() {
     // Vercel AI SDK (ai package) useChat()
@@ -14,20 +14,41 @@ export default function ChatComponent() {
 
     return (
         <div>
-            {/* Text messages */}
-            <div>
-                <h3 className="text-lg font-semibold mt-2">Atalla-ai</h3>
-                <p>I am a bot powered by GPT-4</p>
-            </div>
-
-            <div>
-                <h3 className="text-lg font-semibold mt-2">User</h3>
-                <p>I am human</p>
-            </div>
             
+            {messages.map((message : Message) => {
+                return (
+                    <div key={message.id}>
+                        {/* Name of person talking */}
+                        {
+                            message.role === "assistant"
+                            ?
+                            <h3 className="text-lg font-semibold mt-2">
+                                Atalla-ai
+                            </h3>
+                            :
+                            <h3 className="text-lg font-semibold mt-2">
+                                User
+                            </h3>
+                        }
+
+                            {message.content.split("\n").map((currentTextBlock: string, index : number) => {
+                                if(currentTextBlock === "" ) {
+                                    return <p key={message.id + index}>%nbsp;</p> // creates a space " "
+                                } else {
+                                    return <p key={message.id + index}>{currentTextBlock}</p>
+                                }   
+                             })}
+
+
+                        </div>
+                      )
+                  })}
+            
+                
           <form className="mt-12" onSubmit={ handleSubmit }>
             <p>User Prompt</p>
             <textarea 
+            id="textArea"
             className="mt-2 w-full bg-slate-600 p-2"
             placeholder={"Please type your request here."}
             value={ input }

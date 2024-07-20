@@ -2,7 +2,7 @@
 // route.ts has Route Handlers ???
 
 import { Configuration, OpenAIApi } from "openai-edge";
-import { OpenAIStream, StreamingTextResponse } from "ai";
+import { OpenAIStream, StreamingTextResponse, generateText } from "ai";
 
 export const runtime = 'edge'; // provides optimal infrastructure for our API route (https://edge-runtime.vercel.app/)
 
@@ -35,6 +35,6 @@ export async function POST(request: Request ) {
 
     // send the stream as a response to our client / frontend
     return new StreamingTextResponse(stream);
-    
+
 }
 
